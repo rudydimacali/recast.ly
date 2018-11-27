@@ -24,14 +24,6 @@ import YOUTUBE_API_KEY from '/src/config/youtube.js';
 // );
 
 class App extends React.Component {  
-  componentDidMount() {
-    var searchYouTubeDebounced = _.debounce(searchYouTube, 100);
-    searchYouTubeDebounced({key: `${YOUTUBE_API_KEY}`,
-      max: '5',
-      query: 'surfing'}, (data) => {
-      this.setState({currentVideoList: data, currentVideo: data[0]});
-    });
-  }
   
   constructor(props) {
     super(props);
@@ -40,23 +32,38 @@ class App extends React.Component {
       currentVideo: exampleVideoData[0]
     };
     this.onVideoListEntryClick = this.onVideoListEntryClick.bind(this);
-    this.onSearchChangeDebounced = _.debounce(this.onSearchChange, 1500);
+    this.onSearchChange = this.onSearchChange.bind(this);
+    this.delayedOnSearchChange = _.debounce(this.searchDebounced, 1500);
   }
   
+  componentDidMount() {
+    searchYouTube({key: `${YOUTUBE_API_KEY}`,
+      max: '5',
+      query: 'Hack Reactor'}, (data) => {
+      this.setState({currentVideoList: data, currentVideo: data[0]});
+    });
+  }
 
   onVideoListEntryClick(clickedVideo) {
     this.setState({
       currentVideo: clickedVideo
     });
   }
+
+  searchDebounced(event) {
+    const value = event.target.value;
+    searchYouTube({
+      key: `${YOUTUBE_API_KEY}`,
+      max: '5',
+      query: `${value}`
+    }, (data) => {
+      this.setState({ currentVideoList: data, currentVideo: data[0] });
+    });
+  }
   
   onSearchChange(event) {
     event.persist();
-    searchYouTube({key: `${YOUTUBE_API_KEY}`,
-      max: '5',
-      query: `${event.target.value}`}, (data) => {
-      this.setState({currentVideoList: data, currentVideo: data[0]});
-    });
+    this.delayedOnSearchChange(event);
   }
 
   
@@ -64,7 +71,7 @@ class App extends React.Component {
     return (<div>
       <nav className="navbar">
         <div className="col-md-6 offset-md-3">
-          <div><h5><em>search</em><Search searchFunc={this.onSearchChangeDebounced}/></h5></div>
+          <div><h5><em>search</em><Search searchFunc={this.onSearchChange.bind(this)}/></h5></div>
         </div>
       </nav>
       <div className="row">
