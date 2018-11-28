@@ -179,10 +179,11 @@ h5 {
 .slider {
   position: absolute;
   cursor: pointer;
+  margin-bottom: 4px;
   top: 7px;
-  left: 38px;
-  right: -38px;
-  bottom: 0;
+  left: 36px;
+  right: -36px;
+  bottom: -7px;
   background-color: #ccc;
   -webkit-transition: .4s;
   transition: .4s;
@@ -194,7 +195,7 @@ h5 {
   height: 26px;
   width: 26px;
   left: 4px;
-  bottom: 1px;
+  bottom: 2px;
   background-color: white;
   -webkit-transition: .4s;
   transition: .4s;
