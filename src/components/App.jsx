@@ -28,7 +28,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       currentVideoList: exampleVideoData,
-      currentVideo: exampleVideoData[0]
+      currentVideo: exampleVideoData[0],
+      autoPlay: false
     };
     this.onVideoListEntryClick = this.onVideoListEntryClick.bind(this);
     this.onSearchChange = this.onSearchChange.bind(this);
@@ -64,7 +65,6 @@ class App extends React.Component {
     event.persist();
     this.delayedSearchDebounced(event);
   }
-
   
   render() {
     return (<div>
@@ -75,7 +75,15 @@ class App extends React.Component {
       </nav>
       <div className="row">
         <div className="col-md-7">
-          <div><h5 id="videoPlayerBackground"><em>&nbsp;</em><VideoPlayer video={this.state.currentVideo}/></h5></div>
+          <div><h5 id="videoPlayerBackground">
+            <div id="autoPlayBackground">
+              <div id="autoPlayText">AutoPlay</div>
+              <label className="switch">
+                <input type="checkbox" />
+                <span className="slider round" />
+              </label>
+            </div>
+            <VideoPlayer video={this.state.currentVideo}/></h5></div>
         </div>
         <div className="col-md-5">
           <div><h5 id="videoListBackground"><p>Related Videos</p><VideoList videos={this.state.currentVideoList} clickFunc={this.onVideoListEntryClick}/></h5></div>

@@ -5,6 +5,23 @@ body {
   font-family: 'Didact Gothic', sans-serif;
 }
 
+#autoPlayBackground {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 25px;
+  width: 35%;
+  margin: 8px 0px 8px 15px; 
+}
+
+#autoPlayText {
+  display: inline-block;
+  position: relative;
+  float: left;
+  font-family: 'Gabriela', serif;
+  font-size: 25px;
+  font-weight: bold;
+  margin: 5px 50px 0px 15px;
+}
+
 p {
   margin: 10px 0px 4px 0px;
   font-family: 'Gabriela', serif;
@@ -141,4 +158,67 @@ h5 {
   .video-player {
     margin-right: 20px;
   }
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 7px;
+  left: 38px;
+  right: -38px;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 1px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
