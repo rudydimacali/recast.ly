@@ -2,6 +2,14 @@
 
 body {
   background: #f1f1f1;
+  font-family: 'Didact Gothic', sans-serif;
+}
+
+p {
+  margin: 10px 0px 4px 0px;
+  font-family: 'Gabriela', serif;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .navbar {
@@ -17,6 +25,7 @@ body {
 .search-bar {
   border-radius: 1px;
   background: #fff;
+  margin: 0px 5px 10px 5px;
 }
 
 .search-bar .form-control {
@@ -52,7 +61,6 @@ body {
 .video-list {
   background: #fff;
   padding: 8px;
-  border: 0;
   box-shadow: 0 1px 2px rgba(0,0,0,.1);
   margin-right: 20px;
 }
@@ -60,10 +68,13 @@ body {
 .video-list-entry {
   font-size: 16px;
   padding: 8px;
+  margin-bottom: 20px;
 }
 
 .video-list-entry-title {
   font-weight: bold;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 .video-list-entry-title:hover {
@@ -74,6 +85,12 @@ body {
 .video-list-entry-detail {
   font-size: 12px;
   color: #999;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+#videoPlayerDescription {
+  font-size: 18px;
 }
 
 .loading {
@@ -84,10 +101,36 @@ body {
   padding-left: 20px;
 }
 
+h4 {
+  font-weight: bold;
+}
+
 h5 {
-  border: 2px solid red;
+  border: 2px solid rgba(64, 201, 255, 0.5);
+  border-radius: 15px;
+  background-color: rgba(64, 201, 255, 0.2);
   text-align: center;
-  padding: 10px;
+  margin: 0 auto;
+}
+
+.col-md-7 {
+  margin: 0 auto;
+  padding: 0px -10px 10px 10px;
+}
+
+.col-md-5 {
+  margin: 0 auto;
+  padding: 20px 100px 100px 100px;
+}
+
+#videoPlayerBackground {
+  padding: 0px 20px 20px 0px;
+  margin-left: 25px;
+}
+
+#videoListBackground {
+  padding: 0px 0px 20px 20px;
+  margin-top: -18px;
 }
 
 @media (max-width: 767px) {

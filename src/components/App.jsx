@@ -24,7 +24,6 @@ import YOUTUBE_API_KEY from '/src/config/youtube.js';
 // );
 
 class App extends React.Component {  
-  
   constructor(props) {
     super(props);
     this.state = {
@@ -33,7 +32,7 @@ class App extends React.Component {
     };
     this.onVideoListEntryClick = this.onVideoListEntryClick.bind(this);
     this.onSearchChange = this.onSearchChange.bind(this);
-    this.delayedOnSearchChange = _.debounce(this.searchDebounced, 1500);
+    this.delayedSearchDebounced = _.debounce(this.searchDebounced, 1500);
   }
   
   componentDidMount() {
@@ -63,7 +62,7 @@ class App extends React.Component {
   
   onSearchChange(event) {
     event.persist();
-    this.delayedOnSearchChange(event);
+    this.delayedSearchDebounced(event);
   }
 
   
@@ -71,15 +70,15 @@ class App extends React.Component {
     return (<div>
       <nav className="navbar">
         <div className="col-md-6 offset-md-3">
-          <div><h5><em>search</em><Search searchFunc={this.onSearchChange.bind(this)}/></h5></div>
+          <div><h5><p>Search YouTube</p><Search searchFunc={this.onSearchChange.bind(this)}/></h5></div>
         </div>
       </nav>
       <div className="row">
         <div className="col-md-7">
-          <div><h5><em>videoPlayer</em><VideoPlayer video={this.state.currentVideo}/></h5></div>
+          <div><h5 id="videoPlayerBackground"><em>&nbsp;</em><VideoPlayer video={this.state.currentVideo}/></h5></div>
         </div>
         <div className="col-md-5">
-          <div><h5><em>videoList</em><VideoList videos={this.state.currentVideoList} clickFunc={this.onVideoListEntryClick}/></h5></div>
+          <div><h5 id="videoListBackground"><p>Related Videos</p><VideoList videos={this.state.currentVideoList} clickFunc={this.onVideoListEntryClick}/></h5></div>
         </div>
       </div>
     </div>);
